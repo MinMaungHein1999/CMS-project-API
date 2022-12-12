@@ -1,0 +1,61 @@
+package com.example.demo.controller;
+
+import java.net.URI;
+import java.util.List;
+import com.example.demo.entity.Student;
+import com.example.demo.service.StudentService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+ 
+@RestController
+@RequestMapping("/api/students")
+public class StudentRestController {
+ 
+    private StudentService studentService;
+
+	public StudentRestController(StudentService studentService) {
+		super();
+		this.studentService = studentService;
+	}
+     
+    @PostMapping
+    public ResponseEntity<Student> create(@RequestBody Student student) {
+        Student retStudent = studentService.saveStudent(student);
+        URI productURI = URI.create("/students/" + retStudent.getId());
+        System.out.println(productURI.getPath());
+        return ResponseEntity.created(productURI).body(retStudent);
+    }
+     
+    @GetMapping
+    public List<Student> list() {
+        return studentService.getAllStudents();
+    }
+    
+	@PostMapping("/{id}")
+	public ResponseEntity<Student> updateStudent(@PathVariable Long id,
+			@ModelAttribute("student") Student student,
+			Model model) {
+		
+		// get student from database by id
+		Student existingStudent = studentService.getStudentById(id);
+		existingStudent.setId(id);
+		existingStudent.setFirstName(student.getFirstName());
+		existingStudent.setLastName(student.getLastName());
+		existingStudent.setEmail(student.getEmail());
+		
+		// save updated student object
+		studentService.updateStudent(existingStudent);
+		 URI productURI = URI.create("/students/" + existingStudent.getId());
+	     return ResponseEntity.created(productURI).body(existingStudent);		
+	}
+	
+	// handler method to handle delete student request
+	
+	@GetMapping("/{id}")
+	public String deleteStudent(@PathVariable Long id) {
+		studentService.deleteStudentById(id);
+		return "redirect:/students";
+	}
+	
+}

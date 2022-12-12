@@ -1,0 +1,94 @@
+package com.example.demo.controller;
+
+
+
+
+
+
+
+import java.util.Date;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.entity.Customer;
+import com.example.demo.service.CustomerServic;
+
+@RestController
+@RequestMapping("/api/customers")
+public class CustomerController {
+	
+	private CustomerServic customerServic;
+
+	public CustomerController(CustomerServic customerServic) {
+		super();
+		this.customerServic = customerServic;
+	}
+	
+	@GetMapping
+	public String listCustomers() {
+		
+		return customerServic.getAllCustomers();
+	}
+	
+	@GetMapping
+	public String createCustomerForm(Model model) {
+		
+		Customer customer = new Customer();
+		model.addAttribute("customer", customer);
+		return "create_customer";
+		
+	}
+	
+	@PostMapping("/customers")
+	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
+		/*customer.setMaxVoucherLimit(3);
+	
+		PurchaseHistory purchaseHistory=new PurchaseHistory();
+		purchaseHistory.setCreatedDate(new Date());
+		purchaseHistory.setOrderAmount(1000.300);
+		purchaseHistory.setPromoCode(customer.getPhoneNo()+"supercard");
+		customerServic.savePurchesHistoryAndCustomer(customer,purchaseHistory);*/
+		customer.setCreatedDate(new Date());
+		customerServic.saveCustomer(customer);
+		return "redirect:/customers";
+	}
+	
+	@GetMapping("/customers/edit/{id}")
+	public String editCustomerForm(@PathVariable Long id, Model model) {
+		model.addAttribute("customer", customerServic.getCustomerById(id));
+		return "edit_customer";
+	}
+
+	@PostMapping("/customers/{id}")
+	public String updateCustomer(@PathVariable Long id,
+			@ModelAttribute("customer") Customer customer,
+			Model model) {
+		
+	
+		Customer existingCustomer = customerServic.getCustomerById(id);
+		existingCustomer.setCustomerId(id);
+		existingCustomer.setName(customer.getName());
+		existingCustomer.setPhoneNo(customer.getPhoneNo());
+		
+		
+	
+		customerServic.updateCustomer(existingCustomer);
+		return "redirect:/customers";		
+	}
+	
+	
+	
+	@GetMapping("/customers/{id}")
+	public String deleteCustomer(@PathVariable Long id) {
+		customerServic.deleteCustomerById(id);
+		return "redirect:/customers";
+	}
+	
+}

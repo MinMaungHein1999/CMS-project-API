@@ -1,0 +1,98 @@
+package com.example.demo.service.impl;
+import java.util.Date;
+import java.util.List;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entity.Customer;
+import com.example.demo.entity.Evoucher;
+import com.example.demo.entity.PaymentMethod;
+import com.example.demo.entity.PurchaseHistory;
+import com.example.demo.form.PurchaseRegisterForm;
+import com.example.demo.repository.CustomerRepository;
+import com.example.demo.repository.EvoucherRepository;
+import com.example.demo.repository.PaymentMethodRepository;
+import com.example.demo.repository.PurchaseHistoryRepository;
+import com.example.demo.service.PurchaseHistoryService;
+@Service
+public class PurchaseServiceImpl implements PurchaseHistoryService{
+
+	   private PaymentMethodRepository paymentMethodRepository;
+		private CustomerRepository customerRepository;
+		private EvoucherRepository evoucherRepository;
+		private PurchaseHistoryRepository purchaseHistoryRepository;
+		public PurchaseServiceImpl(CustomerRepository customerRepository,
+				                   PaymentMethodRepository paymentMethodRepository,
+				                   EvoucherRepository evoucherRepository,
+				                   PurchaseHistoryRepository purchaseHistoryRepository) {
+			super();
+			this.paymentMethodRepository=paymentMethodRepository;
+			this.customerRepository = customerRepository;
+			this.evoucherRepository=evoucherRepository;
+			this.purchaseHistoryRepository=purchaseHistoryRepository;
+			
+		}
+
+
+	@Override
+	public List<PurchaseHistory> getAllPurchaseHistorys() {
+		return purchaseHistoryRepository.findAll();
+	}
+
+	@Override
+	public PurchaseHistory savePurchaseHistory(PurchaseHistory evoucher) {
+		return purchaseHistoryRepository.save(evoucher);
+	}
+
+	@Override
+	public PurchaseHistory getPurchaseHistoryById(Long id) {
+		return purchaseHistoryRepository.findById(id).get();
+	}
+
+	@Override
+	public PurchaseHistory updatePurchaseHistory(PurchaseHistory evoucher) {
+		return purchaseHistoryRepository.save(evoucher);
+	}
+
+	@Override
+	public void deletePurchaseHistoryById(Long id) {
+		purchaseHistoryRepository.deleteById(id);	
+	}
+	@Override
+	public PurchaseHistory savePurchesHistoryAndCustomer(PurchaseRegisterForm purchaseRegisterForm){
+		String phoneNo=purchaseRegisterForm.getPhoneNo();
+		Customer customer=null;
+		if(customerRepository.findByPhoneNo(phoneNo)!=null&&customerRepository.findByPhoneNo(phoneNo).size()!=0) {
+		 customer=customerRepository.findByPhoneNo(phoneNo).get(0);
+		}
+		if(customer==null) {
+		customer=new Customer();
+		customer.setCreatedDate(new Date());
+		customer.setMaxVoucherLimit(3);
+		customer.setName(purchaseRegisterForm.getCustomerName());
+		customer.setPhoneNo(purchaseRegisterForm.getPhoneNo());
+		customer=customerRepository.save(customer);
+		}
+		PaymentMethod paymentMethod=paymentMethodRepository.findByName(purchaseRegisterForm.getPaymentMethodName());
+		System.out.println("paymentMethod="+paymentMethod.getName());
+		List<Evoucher> evouchers=evoucherRepository.findAll();
+		Long tempId=(long) 0;
+		for(Evoucher e:evouchers) {
+			if(e.getAmount()<=purchaseRegisterForm.getOrderAmount()) {
+				tempId=e.getEvoucherId();
+			}
+		}
+		System.out.println("tempId="+tempId);
+		PurchaseHistory purchaseHistory=new PurchaseHistory();
+		Evoucher evoucher=evoucherRepository.findById((long)tempId).get();
+		purchaseHistory.setPaymentMethod(paymentMethod);
+		purchaseHistory.setEvoucher(evoucher);
+		purchaseHistory.setCustomer(customer);
+		purchaseHistory.setCreatedDate(new Date());
+		purchaseHistory.setOrderAmount(purchaseRegisterForm.getOrderAmount());
+		purchaseHistory=purchaseHistoryRepository.save(purchaseHistory);
+		System.out.println("Name="+ purchaseHistory.getCustomer().getName()); 
+		return purchaseHistory;
+		
+	}
+
+}

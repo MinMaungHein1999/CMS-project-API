@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;java-coding-test&apos;" deleteContents="false" description="Delete resource &apos;java-coding-test&apos;" element1="/java-coding-test" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1670838881716"/>&#x0A;<refactoring comment="Rename resource &apos;MoneyExchangepop&apos; to &apos;CMS_REST_API&apos;" description="Rename resource &apos;MoneyExchangepop&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/MoneyExchangepop" name="CMS_REST_API" stamp="1670838916029" updateReferences="true"/>
+</session>

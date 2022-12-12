@@ -1,0 +1,32 @@
+package com.example.demo.controller;
+
+import java.net.URI;
+import java.util.List;
+import com.example.demo.entity.Student;
+import com.example.demo.service.StudentService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+ 
+@RestController
+@RequestMapping("/api/students")
+public class StudentRestController {
+ 
+    private StudentService studentService;
+
+	public StudentRestController(StudentService studentService) {
+		super();
+		this.studentService = studentService;
+	}
+     
+    @PostMapping
+    public ResponseEntity<Student> create(@RequestBody Student student) {
+        Student retStudent = studentService.saveStudent(student);
+        URI productURI = URI.create("/students/" + retStudent.getId());
+        return ResponseEntity.created(productURI).body(retStudent);
+    }
+     
+    @GetMapping
+    public List<Student> list() {
+        return studentService.getAllStudents();
+    }
+}

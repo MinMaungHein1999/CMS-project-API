@@ -1,0 +1,74 @@
+package com.example.demo.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import com.example.demo.entity.PurchaseHistory;
+import com.example.demo.form.PurchaseRegisterForm;
+import com.example.demo.service.PurchaseHistoryService;
+
+@Controller
+public class PurchaseController {
+	
+	private PurchaseHistoryService purchaseHistoryService;
+
+	public PurchaseController(PurchaseHistoryService purchaseHistoryService) {
+		super();
+		this.purchaseHistoryService=purchaseHistoryService;
+	}
+	
+	@GetMapping("/purchaseHistories")
+	public String listPurchaseHistorys() {
+		model.addAttribute("purchaseHistories", purchaseHistoryService.getAllPurchaseHistorys());
+		return "purchaseHistories";
+	}
+	
+	@GetMapping("/purchaseHistories/new")
+	public String createPurchaseHistoryForm(Model model) {
+		
+
+		PurchaseRegisterForm purchaseRegisterForm = new PurchaseRegisterForm();
+		model.addAttribute("purchaseRegisterForm", purchaseRegisterForm);
+		return "create_purchaseHistory";
+		
+	}
+	
+	@PostMapping("/purchaseHistories")
+	public String savePurchaseHistory(@ModelAttribute("purchaseRegisterForm")PurchaseRegisterForm purchaseRegisterForm) {
+	    purchaseHistoryService.savePurchesHistoryAndCustomer(purchaseRegisterForm);
+		return "redirect:/purchaseHistories";
+	}
+	
+	@GetMapping("/purchaseHistories/edit/{id}")
+	public String editPurchaseHistoryrForm(@PathVariable Long id, Model model) {
+		model.addAttribute("purchaseHistory",purchaseHistoryService.getPurchaseHistoryById(id));
+		return "edit_purchaseHistory";
+	}
+
+	@PostMapping("/purchaseHistories/{id}")
+	public String updatePurchaseHistory(@PathVariable Long id,
+			@ModelAttribute("purchaseHistory") PurchaseHistory purchaseHistory,
+			Model model) {
+		
+	
+		PurchaseHistory existingpurchaseHistory=purchaseHistoryService.getPurchaseHistoryById(id);
+		existingpurchaseHistory.setOrderAmount(purchaseHistory.getOrderAmount());
+		existingpurchaseHistory.setPromoCode(purchaseHistory.getPromoCode());
+		
+		// save updated  object
+		purchaseHistoryService.updatePurchaseHistory(existingpurchaseHistory);
+		
+		return "redirect:/purchaseHistories";		
+	}
+	
+	
+	@GetMapping("/purchaseHistories/{id}")
+	public String deletePurchaseHistory(@PathVariable Long id) {
+		purchaseHistoryService.deletePurchaseHistoryById(id);
+		return "redirect:/purchaseHistories";
+	}
+	
+}
