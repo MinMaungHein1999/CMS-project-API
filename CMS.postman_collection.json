@@ -1,0 +1,251 @@
+{
+	"info": {
+		"_postman_id": "dbbd19ef-f92e-4142-9a6f-44cafab485c0",
+		"name": "CMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "13050030"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "get Access Token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "password",
+								"username": "MinMaung"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:8090/token"
+					},
+					"response": []
+				},
+				{
+					"name": "get All Customers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJNaW5NYXVuZyIsImV4cCI6MTY3MDg0NTI3NCwiaWF0IjoxNjcwODQxNjc0LCJzY29wZSI6InJlYWQifQ.Dz1EzsmN0L-euvVCTGaM4DZEM2ACHd_bMADfBEaIkUfC1xofMMBUU21cXmpNDcoGUAIIEneczD15Mhw5ih6HaQ8VMv_Qv35q_Tm9vpAywh0mxmCG5Jz4SypS0TccJLXW1oTa71twqFjOJ1Eo4QekYvAr9lZIgqSHPLwyO_3OWDRzSCED4pcW6ROwwKfMMmND9ppukW6GCs41Rk_MUWj-wrE-MLIexmWDWXudSW77yC9nf04ZQ6t1kYM1xL3FtOMAe3oWAHxxVj5ezX-g4k7YdtX9daZre-hzkhBfB_clmf0RzzGRjuQzHn1nV9TXbl-SfCUGH7WwIiAP23OcdNVZaQ"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8090/api/customers"
+					},
+					"response": []
+				},
+				{
+					"name": "find Customer By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJNaW5NYXVuZyIsImV4cCI6MTY3MDg0NTI3NCwiaWF0IjoxNjcwODQxNjc0LCJzY29wZSI6InJlYWQifQ.Dz1EzsmN0L-euvVCTGaM4DZEM2ACHd_bMADfBEaIkUfC1xofMMBUU21cXmpNDcoGUAIIEneczD15Mhw5ih6HaQ8VMv_Qv35q_Tm9vpAywh0mxmCG5Jz4SypS0TccJLXW1oTa71twqFjOJ1Eo4QekYvAr9lZIgqSHPLwyO_3OWDRzSCED4pcW6ROwwKfMMmND9ppukW6GCs41Rk_MUWj-wrE-MLIexmWDWXudSW77yC9nf04ZQ6t1kYM1xL3FtOMAe3oWAHxxVj5ezX-g4k7YdtX9daZre-hzkhBfB_clmf0RzzGRjuQzHn1nV9TXbl-SfCUGH7WwIiAP23OcdNVZaQ"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8090/api/customers/find/5"
+					},
+					"response": []
+				},
+				{
+					"name": "Upadate By Customer Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJNaW5NYXVuZyIsImV4cCI6MTY3MDg0NTI3NCwiaWF0IjoxNjcwODQxNjc0LCJzY29wZSI6InJlYWQifQ.Dz1EzsmN0L-euvVCTGaM4DZEM2ACHd_bMADfBEaIkUfC1xofMMBUU21cXmpNDcoGUAIIEneczD15Mhw5ih6HaQ8VMv_Qv35q_Tm9vpAywh0mxmCG5Jz4SypS0TccJLXW1oTa71twqFjOJ1Eo4QekYvAr9lZIgqSHPLwyO_3OWDRzSCED4pcW6ROwwKfMMmND9ppukW6GCs41Rk_MUWj-wrE-MLIexmWDWXudSW77yC9nf04ZQ6t1kYM1xL3FtOMAe3oWAHxxVj5ezX-g4k7YdtX9daZre-hzkhBfB_clmf0RzzGRjuQzHn1nV9TXbl-SfCUGH7WwIiAP23OcdNVZaQ"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"name\": \"Zeo Linn\",\n        \"phoneNo\": \"0957190998\",\n        \"maxVoucherLimit\": 6\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8090/api/customers/5"
+					},
+					"response": []
+				},
+				{
+					"name": "create Customers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJNaW5NYXVuZyIsImV4cCI6MTY3MDg0NTI3NCwiaWF0IjoxNjcwODQxNjc0LCJzY29wZSI6InJlYWQifQ.Dz1EzsmN0L-euvVCTGaM4DZEM2ACHd_bMADfBEaIkUfC1xofMMBUU21cXmpNDcoGUAIIEneczD15Mhw5ih6HaQ8VMv_Qv35q_Tm9vpAywh0mxmCG5Jz4SypS0TccJLXW1oTa71twqFjOJ1Eo4QekYvAr9lZIgqSHPLwyO_3OWDRzSCED4pcW6ROwwKfMMmND9ppukW6GCs41Rk_MUWj-wrE-MLIexmWDWXudSW77yC9nf04ZQ6t1kYM1xL3FtOMAe3oWAHxxVj5ezX-g4k7YdtX9daZre-hzkhBfB_clmf0RzzGRjuQzHn1nV9TXbl-SfCUGH7WwIiAP23OcdNVZaQ"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"name\": \"Zeo Zeo\",\n        \"phoneNo\": \"0957190998\",\n        \"maxVoucherLimit\": 6\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8090/api/customers"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Evoucher",
+			"item": [
+				{
+					"name": "get All Evouchers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJNaW5NYXVuZyIsImV4cCI6MTY3MDg0NTI3NCwiaWF0IjoxNjcwODQxNjc0LCJzY29wZSI6InJlYWQifQ.Dz1EzsmN0L-euvVCTGaM4DZEM2ACHd_bMADfBEaIkUfC1xofMMBUU21cXmpNDcoGUAIIEneczD15Mhw5ih6HaQ8VMv_Qv35q_Tm9vpAywh0mxmCG5Jz4SypS0TccJLXW1oTa71twqFjOJ1Eo4QekYvAr9lZIgqSHPLwyO_3OWDRzSCED4pcW6ROwwKfMMmND9ppukW6GCs41Rk_MUWj-wrE-MLIexmWDWXudSW77yC9nf04ZQ6t1kYM1xL3FtOMAe3oWAHxxVj5ezX-g4k7YdtX9daZre-hzkhBfB_clmf0RzzGRjuQzHn1nV9TXbl-SfCUGH7WwIiAP23OcdNVZaQ"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8090/api/evouchers"
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Evoucher",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJNaW5NYXVuZyIsImV4cCI6MTY3MDg0NTI3NCwiaWF0IjoxNjcwODQxNjc0LCJzY29wZSI6InJlYWQifQ.Dz1EzsmN0L-euvVCTGaM4DZEM2ACHd_bMADfBEaIkUfC1xofMMBUU21cXmpNDcoGUAIIEneczD15Mhw5ih6HaQ8VMv_Qv35q_Tm9vpAywh0mxmCG5Jz4SypS0TccJLXW1oTa71twqFjOJ1Eo4QekYvAr9lZIgqSHPLwyO_3OWDRzSCED4pcW6ROwwKfMMmND9ppukW6GCs41Rk_MUWj-wrE-MLIexmWDWXudSW77yC9nf04ZQ6t1kYM1xL3FtOMAe3oWAHxxVj5ezX-g4k7YdtX9daZre-hzkhBfB_clmf0RzzGRjuQzHn1nV9TXbl-SfCUGH7WwIiAP23OcdNVZaQ"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"title\": \"GoldCustomerEVoucher\",\n        \"expireDate\": \"2023-12-19T17:30:00.000+00:00\",\n        \"image\": null,\n        \"amount\": 4000.0,\n        \"qty\": 2,\n        \"returnAmount\": 0.5,\n        \"description\": null,\n        \"createdDate\": \"2022-12-12\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8090/api/evouchers"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Evoucher By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJNaW5NYXVuZyIsImV4cCI6MTY3MDg0NTI3NCwiaWF0IjoxNjcwODQxNjc0LCJzY29wZSI6InJlYWQifQ.Dz1EzsmN0L-euvVCTGaM4DZEM2ACHd_bMADfBEaIkUfC1xofMMBUU21cXmpNDcoGUAIIEneczD15Mhw5ih6HaQ8VMv_Qv35q_Tm9vpAywh0mxmCG5Jz4SypS0TccJLXW1oTa71twqFjOJ1Eo4QekYvAr9lZIgqSHPLwyO_3OWDRzSCED4pcW6ROwwKfMMmND9ppukW6GCs41Rk_MUWj-wrE-MLIexmWDWXudSW77yC9nf04ZQ6t1kYM1xL3FtOMAe3oWAHxxVj5ezX-g4k7YdtX9daZre-hzkhBfB_clmf0RzzGRjuQzHn1nV9TXbl-SfCUGH7WwIiAP23OcdNVZaQ"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8090/api/evouchers/find/1"
+					},
+					"response": []
+				},
+				{
+					"name": "update Evoucher By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJNaW5NYXVuZyIsImV4cCI6MTY3MDg0NTI3NCwiaWF0IjoxNjcwODQxNjc0LCJzY29wZSI6InJlYWQifQ.Dz1EzsmN0L-euvVCTGaM4DZEM2ACHd_bMADfBEaIkUfC1xofMMBUU21cXmpNDcoGUAIIEneczD15Mhw5ih6HaQ8VMv_Qv35q_Tm9vpAywh0mxmCG5Jz4SypS0TccJLXW1oTa71twqFjOJ1Eo4QekYvAr9lZIgqSHPLwyO_3OWDRzSCED4pcW6ROwwKfMMmND9ppukW6GCs41Rk_MUWj-wrE-MLIexmWDWXudSW77yC9nf04ZQ6t1kYM1xL3FtOMAe3oWAHxxVj5ezX-g4k7YdtX9daZre-hzkhBfB_clmf0RzzGRjuQzHn1nV9TXbl-SfCUGH7WwIiAP23OcdNVZaQ"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"evoucherId\": 2,\n        \"title\": \"GoldCustomerEVoucher\",\n        \"expireDate\": \"2023-12-19T17:30:00.000+00:00\",\n        \"image\": null,\n        \"amount\": 4000.0,\n        \"qty\": 2,\n        \"returnAmount\": 0.5,\n        \"description\": null,\n        \"createdDate\": \"2022-12-12\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8090/api/evouchers/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Evoucher By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJNaW5NYXVuZyIsImV4cCI6MTY3MDg0NTI3NCwiaWF0IjoxNjcwODQxNjc0LCJzY29wZSI6InJlYWQifQ.Dz1EzsmN0L-euvVCTGaM4DZEM2ACHd_bMADfBEaIkUfC1xofMMBUU21cXmpNDcoGUAIIEneczD15Mhw5ih6HaQ8VMv_Qv35q_Tm9vpAywh0mxmCG5Jz4SypS0TccJLXW1oTa71twqFjOJ1Eo4QekYvAr9lZIgqSHPLwyO_3OWDRzSCED4pcW6ROwwKfMMmND9ppukW6GCs41Rk_MUWj-wrE-MLIexmWDWXudSW77yC9nf04ZQ6t1kYM1xL3FtOMAe3oWAHxxVj5ezX-g4k7YdtX9daZre-hzkhBfB_clmf0RzzGRjuQzHn1nV9TXbl-SfCUGH7WwIiAP23OcdNVZaQ"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8090/api/evouchers/6"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Evoucher Purchase",
+			"item": [
+				{
+					"name": "Get All purchase histories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJNaW5NYXVuZyIsImV4cCI6MTY3MDg0NTI3NCwiaWF0IjoxNjcwODQxNjc0LCJzY29wZSI6InJlYWQifQ.Dz1EzsmN0L-euvVCTGaM4DZEM2ACHd_bMADfBEaIkUfC1xofMMBUU21cXmpNDcoGUAIIEneczD15Mhw5ih6HaQ8VMv_Qv35q_Tm9vpAywh0mxmCG5Jz4SypS0TccJLXW1oTa71twqFjOJ1Eo4QekYvAr9lZIgqSHPLwyO_3OWDRzSCED4pcW6ROwwKfMMmND9ppukW6GCs41Rk_MUWj-wrE-MLIexmWDWXudSW77yC9nf04ZQ6t1kYM1xL3FtOMAe3oWAHxxVj5ezX-g4k7YdtX9daZre-hzkhBfB_clmf0RzzGRjuQzHn1nV9TXbl-SfCUGH7WwIiAP23OcdNVZaQ"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8090/api/purchaseHistories"
+					},
+					"response": []
+				},
+				{
+					"name": "Create purchase histories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJNaW5NYXVuZyIsImV4cCI6MTY3MDg0NTI3NCwiaWF0IjoxNjcwODQxNjc0LCJzY29wZSI6InJlYWQifQ.Dz1EzsmN0L-euvVCTGaM4DZEM2ACHd_bMADfBEaIkUfC1xofMMBUU21cXmpNDcoGUAIIEneczD15Mhw5ih6HaQ8VMv_Qv35q_Tm9vpAywh0mxmCG5Jz4SypS0TccJLXW1oTa71twqFjOJ1Eo4QekYvAr9lZIgqSHPLwyO_3OWDRzSCED4pcW6ROwwKfMMmND9ppukW6GCs41Rk_MUWj-wrE-MLIexmWDWXudSW77yC9nf04ZQ6t1kYM1xL3FtOMAe3oWAHxxVj5ezX-g4k7YdtX9daZre-hzkhBfB_clmf0RzzGRjuQzHn1nV9TXbl-SfCUGH7WwIiAP23OcdNVZaQ"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"phoneNo\": \"09790834201\",\n        \"customerName\": \"Jucissa Win\",\n        \"paymentMethodName\": \"VISA\",\n        \"orderAmount\": 890000\n       \n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8090/api/purchaseHistories"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
